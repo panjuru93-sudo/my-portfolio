@@ -1,0 +1,58 @@
+/* Dark Tech Theme — CSS Variables (컬러 팔레트 디자인 시스템.md 기반) */
+:root {
+  /* Primary Colors */
+  --color-primary: #1455F5;
+  --color-primary-light: #4D8FFF;
+  --color-primary-dark: #0A35C0;
+
+  /* Secondary Colors */
+  --color-secondary: #D6E8FF;
+  --color-accent: #5599FF;
+
+  /* Background Colors */
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #03040D;
+  --color-bg-card: #0A0E24;
+
+  /* Text Colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B0BDD8;
+  --color-text-muted: #5A6480;
+
+  /* Interactive Colors */
+  --color-button-primary: #1455F5;
+  --color-button-hover: #4D8FFF;
+  --color-link: #4D8FFF;
+  --color-link-hover: #D6E8FF;
+
+  /* Border & Divider */
+  --color-border: #1A2040;
+  --color-divider: #0D1228;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: 'Inter', 'Pretendard', 'Noto Sans KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* 스크롤바 커스텀 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
