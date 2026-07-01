@@ -14,7 +14,7 @@ import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 const aboutMeData = {
   basicInfo: {
     name: '정아영',
-    education: '',        // 학교·학과 정보를 입력하세요
+    education: '부산영상예술고등학교 영상디자인과 졸업',
     major: '웹 프론트엔드 개발',
     experience: 'React 학습 중',
     photo: '',
