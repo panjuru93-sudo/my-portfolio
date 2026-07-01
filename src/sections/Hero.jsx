@@ -1,8 +1,15 @@
 import { Box, Typography, Button, Chip } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function Hero() {
-  const handleScroll = () => {
+  const navigate = useNavigate();
+
+  const handleScrollToContact = () => {
+    document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleScrollDown = () => {
     document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -47,7 +54,7 @@ export default function Hero() {
         }}
       >
         <Chip
-          label="Hero 섹션"
+          label="Frontend Developer"
           size="small"
           sx={{
             mb: 3,
@@ -63,45 +70,60 @@ export default function Hero() {
         <Typography
           variant="h1"
           sx={{
-            fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
+            fontSize: { xs: '2.8rem', sm: '3.8rem', md: '5rem' },
             fontWeight: 800,
             lineHeight: 1.1,
             letterSpacing: '-0.03em',
-            mb: 2,
+            mb: 1,
             background: 'linear-gradient(180deg, #FFFFFF 0%, #B0BDD8 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}
         >
-          여기는 Hero 섹션입니다
+          정아영
         </Typography>
 
         <Typography
-          variant="h5"
+          variant="h2"
+          sx={{
+            fontSize: { xs: '1.1rem', sm: '1.4rem', md: '1.6rem' },
+            fontWeight: 500,
+            color: '#4D8FFF',
+            mb: 3,
+            letterSpacing: '-0.01em',
+          }}
+        >
+          React로 경험을 만드는 개발자
+        </Typography>
+
+        <Typography
+          variant="body1"
           sx={{
             color: '#B0BDD8',
             fontWeight: 400,
-            lineHeight: 1.6,
-            mb: 4,
-            maxWidth: 560,
+            lineHeight: 1.8,
+            mb: 5,
+            maxWidth: 520,
             mx: 'auto',
-            fontSize: { xs: '1rem', md: '1.2rem' },
+            fontSize: { xs: '0.95rem', md: '1.05rem' },
           }}
         >
-          메인 비주얼, 이름, 간단 소개가 들어갈 예정입니다.
+          사용자 경험을 먼저 생각하며 React와 MUI로
           <br />
-          첫인상을 결정하는 가장 중요한 섹션입니다.
+          직관적이고 아름다운 웹을 만들어가고 있습니다.
         </Typography>
 
         <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
           <Button
             variant="contained"
             size="large"
+            onClick={() => navigate('/projects')}
             sx={{
               background: 'linear-gradient(135deg, #1455F5, #4D8FFF)',
               px: 4,
               py: 1.5,
               fontSize: '1rem',
+              fontWeight: 600,
               '&:hover': { background: 'linear-gradient(135deg, #4D8FFF, #5599FF)' },
             }}
           >
@@ -110,6 +132,7 @@ export default function Hero() {
           <Button
             variant="outlined"
             size="large"
+            onClick={handleScrollToContact}
             sx={{
               borderColor: '#1A2040',
               color: '#B0BDD8',
@@ -126,7 +149,7 @@ export default function Hero() {
 
       {/* 스크롤 유도 */}
       <Box
-        onClick={handleScroll}
+        onClick={handleScrollDown}
         sx={{
           position: 'absolute',
           bottom: 32,
