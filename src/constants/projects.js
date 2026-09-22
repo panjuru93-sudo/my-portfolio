@@ -1,0 +1,32 @@
+export const projects = [
+  {
+    id: 'gachi-haja',
+    title: '같이 하자',
+    description: '관심 있는 스터디·취미 모임을 찾고 함께 성장하는 소셜 매칭 플랫폼',
+    tags: ['React', 'Supabase', 'MUI'],
+    emoji: '✨',
+    accent: '#FF6B9D',
+    bg: 'linear-gradient(135deg, #1a0010 0%, #3d0020 100%)',
+    liveUrl: 'https://panjuru93-sudo.github.io/pingiping/mini_sns/',
+  },
+  {
+    id: 'guestbook',
+    title: '방명록',
+    description: '방문자들이 따뜻한 메시지를 남기고 서로 소통할 수 있는 온라인 방명록',
+    tags: ['React', 'Supabase', 'MUI'],
+    emoji: '📝',
+    accent: '#7C3AED',
+    bg: 'linear-gradient(135deg, #0d0020 0%, #2a0060 100%)',
+    liveUrl: 'https://panjuru93-sudo.github.io/pingiping/my-guestbook/',
+  },
+  {
+    id: 'community',
+    title: '커뮤니티 게시판',
+    description: '로그인·회원가입부터 게시글 작성·검색까지 갖춘 Supabase 기반 커뮤니티',
+    tags: ['React', 'Supabase', 'Auth'],
+    emoji: '💬',
+    accent: '#22C55E',
+    bg: 'linear-gradient(135deg, #001a08 0%, #003d14 100%)',
+    liveUrl: 'https://panjuru93-sudo.github.io/pingiping/my-community/',
+  },
+];

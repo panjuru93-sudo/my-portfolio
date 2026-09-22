@@ -1,97 +1,89 @@
 import { createTheme } from '@mui/material/styles';
 
 // Dark Tech Theme — Sui 기반 컬러 팔레트 디자인 시스템
-export const colorTokens = {
-  primary: '#1455F5',
-  primaryLight: '#4D8FFF',
-  primaryDark: '#0A35C0',
-  secondary: '#D6E8FF',
-  accent: '#5599FF',
-  bgPrimary: '#000000',
-  bgSecondary: '#03040D',
-  bgCard: '#0A0E24',
-  textPrimary: '#FFFFFF',
-  textSecondary: '#B0BDD8',
-  textMuted: '#5A6480',
-  buttonPrimary: '#1455F5',
-  buttonHover: '#4D8FFF',
-  link: '#4D8FFF',
-  linkHover: '#D6E8FF',
-  border: '#1A2040',
-  divider: '#0D1228',
-};
+// 브랜드 블루(primary)는 라이트/다크 공통, 배경·텍스트만 모드별로 갈라진다.
+const PRIMARY = '#1455F5';
+const PRIMARY_LIGHT = '#4D8FFF';
+const PRIMARY_DARK = '#0A35C0';
+const ACCENT = '#5599FF';
 
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: colorTokens.primary,
-      light: colorTokens.primaryLight,
-      dark: colorTokens.primaryDark,
+/**
+ * createAppTheme — 라이트/다크 모드에 맞는 MUI 테마를 생성한다.
+ * palette 값은 MUI 내부 색상 연산(alpha 등)에 쓰이므로 실제 hex를 사용하고,
+ * components.styleOverrides 쪽은 CSS 변수(var(--...))를 참조해 index.css의 팔레트와 동기화한다.
+ *
+ * @param {'light'|'dark'} mode
+ * @returns {import('@mui/material/styles').Theme}
+ */
+export function createAppTheme(mode = 'dark') {
+  const isDark = mode === 'dark';
+
+  return createTheme({
+    palette: {
+      mode,
+      primary: { main: PRIMARY, light: PRIMARY_LIGHT, dark: PRIMARY_DARK },
+      secondary: { main: isDark ? '#D6E8FF' : PRIMARY },
+      background: {
+        default: isDark ? '#000000' : '#FFFFFF',
+        paper: isDark ? '#0A0E24' : '#FFFFFF',
+      },
+      text: {
+        primary: isDark ? '#FFFFFF' : '#0A0E24',
+        secondary: isDark ? '#B0BDD8' : '#45506E',
+        disabled: isDark ? '#5A6480' : '#6B7690',
+      },
+      divider: isDark ? '#1A2040' : '#E1E6F0',
     },
-    secondary: {
-      main: colorTokens.secondary,
+    typography: {
+      fontFamily: '"Inter", "Pretendard", "Noto Sans KR", sans-serif',
+      h1: { fontWeight: 700, letterSpacing: '-0.02em' },
+      h2: { fontWeight: 700, letterSpacing: '-0.01em' },
+      h3: { fontWeight: 600 },
+      h4: { fontWeight: 600 },
+      body1: { lineHeight: 1.75 },
+      body2: { lineHeight: 1.6 },
     },
-    background: {
-      default: colorTokens.bgPrimary,
-      paper: colorTokens.bgCard,
+    shape: {
+      borderRadius: 12,
     },
-    text: {
-      primary: colorTokens.textPrimary,
-      secondary: colorTokens.textSecondary,
-      disabled: colorTokens.textMuted,
-    },
-    divider: colorTokens.border,
-  },
-  typography: {
-    fontFamily: '"Inter", "Pretendard", "Noto Sans KR", sans-serif',
-    h1: { fontWeight: 700, letterSpacing: '-0.02em' },
-    h2: { fontWeight: 700, letterSpacing: '-0.01em' },
-    h3: { fontWeight: 600 },
-    h4: { fontWeight: 600 },
-    body1: { lineHeight: 1.75 },
-    body2: { lineHeight: 1.6 },
-  },
-  shape: {
-    borderRadius: 12,
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none',
-          fontWeight: 600,
-          borderRadius: 8,
-          padding: '10px 24px',
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+            fontWeight: 600,
+            borderRadius: 8,
+            padding: '10px 24px',
+          },
+          containedPrimary: {
+            background: `linear-gradient(135deg, ${PRIMARY}, ${PRIMARY_LIGHT})`,
+            '&:hover': {
+              background: `linear-gradient(135deg, ${PRIMARY_LIGHT}, ${ACCENT})`,
+            },
+          },
         },
-        containedPrimary: {
-          background: `linear-gradient(135deg, ${colorTokens.primary}, ${colorTokens.primaryLight})`,
-          '&:hover': {
-            background: `linear-gradient(135deg, ${colorTokens.primaryLight}, ${colorTokens.accent})`,
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            background: 'var(--color-bg-card)',
+            border: '1px solid var(--color-border)',
+            backdropFilter: 'blur(10px)',
+          },
+        },
+      },
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            background: 'var(--appbar-bg)',
+            backdropFilter: 'blur(20px)',
+            borderBottom: '1px solid var(--color-border)',
+            boxShadow: 'none',
           },
         },
       },
     },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          background: colorTokens.bgCard,
-          border: `1px solid ${colorTokens.border}`,
-          backdropFilter: 'blur(10px)',
-        },
-      },
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          background: 'rgba(0,0,0,0.85)',
-          backdropFilter: 'blur(20px)',
-          borderBottom: `1px solid ${colorTokens.border}`,
-          boxShadow: 'none',
-        },
-      },
-    },
-  },
-});
+  });
+}
 
-export default theme;
+export default createAppTheme;

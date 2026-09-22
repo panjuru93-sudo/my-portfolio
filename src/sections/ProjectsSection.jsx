@@ -1,45 +1,19 @@
-import { Box, Typography, Chip, Button } from '@mui/material';
+import { useMemo } from 'react';
+import { Box, Typography, Chip, Button, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import WorkOutlinedIcon from '@mui/icons-material/WorkOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-
-const featuredProjects = [
-  {
-    title: '같이 하자',
-    description: '관심 있는 스터디·취미 모임을 찾고 함께 성장하는 소셜 매칭 플랫폼',
-    tags: ['React', 'Supabase', 'MUI'],
-    emoji: '✨',
-    accent: '#FF6B9D',
-    bg: 'linear-gradient(135deg, #1a0010 0%, #3d0020 100%)',
-    liveUrl: 'https://panjuru93-sudo.github.io/pingiping/mini_sns/',
-  },
-  {
-    title: '방명록',
-    description: '방문자들이 따뜻한 메시지를 남기고 서로 소통할 수 있는 온라인 방명록',
-    tags: ['React', 'Supabase', 'MUI'],
-    emoji: '📝',
-    accent: '#7C3AED',
-    bg: 'linear-gradient(135deg, #0d0020 0%, #2a0060 100%)',
-    liveUrl: 'https://panjuru93-sudo.github.io/pingiping/my-guestbook/',
-  },
-  {
-    title: '커뮤니티 게시판',
-    description: '로그인·회원가입부터 게시글 작성·검색까지 갖춘 Supabase 기반 커뮤니티',
-    tags: ['React', 'Supabase', 'Auth'],
-    emoji: '💬',
-    accent: '#22C55E',
-    bg: 'linear-gradient(135deg, #001a08 0%, #003d14 100%)',
-    liveUrl: 'https://panjuru93-sudo.github.io/pingiping/my-community/',
-  },
-];
+import StatCounter from '../components/common/StatCounter';
+import RevealBackground from '../components/common/RevealBackground';
+import { projects as featuredProjects } from '../constants/projects';
 
 function MiniProjectCard({ project }) {
   return (
     <Box
       sx={{
-        background: 'rgba(10,14,36,0.6)',
-        border: '1px solid #1A2040',
+        background: 'var(--surface-card)',
+        border: '1px solid var(--color-border)',
         borderRadius: 3,
         overflow: 'hidden',
         transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
@@ -66,10 +40,10 @@ function MiniProjectCard({ project }) {
 
       {/* 정보 */}
       <Box sx={{ p: 2.5 }}>
-        <Typography sx={{ color: '#FFFFFF', fontWeight: 700, fontSize: '1rem', mb: 0.75 }}>
+        <Typography sx={{ color: 'var(--color-text-primary)', fontWeight: 700, fontSize: '1rem', mb: 0.75 }}>
           {project.title}
         </Typography>
-        <Typography variant="body2" sx={{ color: '#B0BDD8', fontSize: '0.83rem', lineHeight: 1.6, mb: 2 }}>
+        <Typography variant="body2" sx={{ color: 'var(--color-text-secondary)', fontSize: '0.83rem', lineHeight: 1.6, mb: 2 }}>
           {project.description}
         </Typography>
         <Box sx={{ display: 'flex', gap: 0.75, flexWrap: 'wrap', mb: 2 }}>
@@ -111,31 +85,42 @@ function MiniProjectCard({ project }) {
 export default function ProjectsSection() {
   const navigate = useNavigate();
 
+  const stats = useMemo(() => {
+    const uniqueTags = new Set(featuredProjects.flatMap((project) => project.tags));
+    return {
+      projectCount: featuredProjects.length,
+      techCount: uniqueTags.size,
+    };
+  }, []);
+
   return (
     <Box
       component="section"
       id="projects-section"
       sx={{
+        position: 'relative',
+        overflow: 'hidden',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#03040D',
         py: 12,
         px: 3,
       }}
     >
-      <Box sx={{ maxWidth: 1100, width: '100%' }}>
+      <RevealBackground background="var(--color-bg-secondary)" />
+
+      <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 1100, width: '100%' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 4 }}>
-          <Box sx={{ width: 32, height: 2, background: '#1455F5', borderRadius: 1 }} />
+          <Box sx={{ width: 32, height: 2, background: 'var(--color-primary)', borderRadius: 1 }} />
           <Chip
-            icon={<WorkOutlinedIcon sx={{ fontSize: 16, color: '#4D8FFF !important' }} />}
-            label="Projects"
+            icon={<WorkOutlinedIcon sx={{ fontSize: 16, color: 'var(--color-primary-light) !important' }} />}
+            label="프로젝트"
             size="small"
             sx={{
-              background: 'rgba(20,85,245,0.1)',
-              border: '1px solid rgba(20,85,245,0.3)',
-              color: '#4D8FFF',
+              background: 'var(--chip-bg)',
+              border: '1px solid var(--chip-border)',
+              color: 'var(--color-primary-light)',
               fontWeight: 600,
             }}
           />
@@ -145,11 +130,11 @@ export default function ProjectsSection() {
           <Box>
             <Typography
               variant="h2"
-              sx={{ fontSize: { xs: '2rem', md: '2.8rem' }, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.02em', mb: 1 }}
+              sx={{ fontSize: { xs: '2rem', md: '2.8rem' }, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.02em', mb: 1 }}
             >
               대표 프로젝트
             </Typography>
-            <Typography variant="body1" sx={{ color: '#5A6480' }}>
+            <Typography variant="body1" sx={{ color: 'var(--color-text-muted)' }}>
               직접 기획하고 배포한 프로젝트들입니다.
             </Typography>
           </Box>
@@ -157,11 +142,21 @@ export default function ProjectsSection() {
             variant="outlined"
             endIcon={<ArrowForwardIcon />}
             onClick={() => navigate('/projects')}
-            sx={{ borderColor: '#1A2040', color: '#B0BDD8', '&:hover': { borderColor: '#4D8FFF', color: '#FFFFFF' }, whiteSpace: 'nowrap' }}
+            sx={{ borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)', '&:hover': { borderColor: 'var(--color-primary-light)', color: 'var(--color-text-primary)' }, whiteSpace: 'nowrap' }}
           >
             전체 보기
           </Button>
         </Box>
+
+        {/* 통계 카운터 */}
+        <Grid container spacing={3} sx={{ mb: 6 }}>
+          <Grid size={{ xs: 6, sm: 4 }}>
+            <StatCounter value={stats.projectCount} suffix="개" label="배포한 프로젝트" color="var(--color-primary-light)" />
+          </Grid>
+          <Grid size={{ xs: 6, sm: 4 }}>
+            <StatCounter value={stats.techCount} suffix="개" label="활용한 기술 스택" color="#22C55E" />
+          </Grid>
+        </Grid>
 
         <Box
           sx={{
@@ -182,11 +177,11 @@ export default function ProjectsSection() {
             endIcon={<ArrowForwardIcon />}
             onClick={() => navigate('/projects')}
             sx={{
-              background: 'linear-gradient(135deg, #1455F5, #4D8FFF)',
+              background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-light))',
               px: 5,
               py: 1.5,
               fontWeight: 600,
-              '&:hover': { background: 'linear-gradient(135deg, #4D8FFF, #5599FF)' },
+              '&:hover': { background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-accent))' },
             }}
           >
             전체 프로젝트 보기

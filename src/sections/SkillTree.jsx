@@ -1,50 +1,59 @@
-import { Box, Typography, Chip, LinearProgress } from '@mui/material';
+import { useMemo } from 'react';
+import { Box, Typography, Chip, Button, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import CodeIcon from '@mui/icons-material/Code';
-
-const skills = [
-  { name: 'React', level: 80, category: 'Frontend', desc: '여러 프로젝트를 React로 개발, Hooks·Router 활용' },
-  { name: 'JavaScript (ES6+)', level: 75, category: 'Frontend', desc: '비동기 처리, 구조분해할당 등 실전 문법 활용' },
-  { name: 'MUI (Material UI)', level: 82, category: 'UI', desc: 'sx prop, 테마 커스터마이징, 반응형 레이아웃 구현' },
-  { name: 'Supabase', level: 65, category: 'Backend', desc: '인증, DB CRUD, 실시간 데이터 연동 경험' },
-  { name: 'React Router', level: 72, category: 'Frontend', desc: '중첩 라우팅, 보호된 라우트(Private Route) 구현' },
-  { name: 'Vite', level: 70, category: 'Tool', desc: '빠른 개발 환경 구성 및 GitHub Pages 배포' },
-  { name: 'Git / GitHub', level: 68, category: 'Tool', desc: '브랜치 관리, PR, GitHub Actions 워크플로우 경험' },
-  { name: 'HTML / CSS', level: 78, category: 'Frontend', desc: '시맨틱 마크업, Flexbox/Grid 레이아웃 구성' },
-];
-
-const categoryColors = {
-  Frontend: '#1455F5',
-  UI: '#7C3AED',
-  Backend: '#22C55E',
-  Tool: '#F59E0B',
-};
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { usePortfolio } from '../hooks/usePortfolio';
+import { categoryColors } from '../theme/skillCategories';
+import CircularSkillGauge from '../components/common/CircularSkillGauge';
+import RevealBackground from '../components/common/RevealBackground';
 
 export default function SkillTree() {
+  const navigate = useNavigate();
+  const { getHomeData } = usePortfolio();
+  const { skills } = useMemo(() => getHomeData(), [getHomeData]);
+
   return (
     <Box
       component="section"
       id="skill-section"
+      aria-label="주요 기술 스택"
       sx={{
+        position: 'relative',
+        overflow: 'hidden',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#000000',
         py: 12,
         px: 3,
       }}
     >
-      <Box sx={{ maxWidth: 900, width: '100%' }}>
+      <RevealBackground background="var(--color-bg-primary)" />
+
+      <Box
+        sx={{
+          position: 'relative',
+          zIndex: 1,
+          maxWidth: 900,
+          width: '100%',
+          animation: 'skillsFadeIn 0.6s ease',
+          '@keyframes skillsFadeIn': {
+            from: { opacity: 0, transform: 'translateY(12px)' },
+            to: { opacity: 1, transform: 'translateY(0)' },
+          },
+        }}
+      >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 4 }}>
-          <Box sx={{ width: 32, height: 2, background: '#1455F5', borderRadius: 1 }} />
+          <Box sx={{ width: 32, height: 2, background: 'var(--color-primary)', borderRadius: 1 }} />
           <Chip
-            icon={<CodeIcon sx={{ fontSize: 16, color: '#4D8FFF !important' }} />}
-            label="Skills"
+            icon={<CodeIcon sx={{ fontSize: 16, color: 'var(--color-primary-light) !important' }} />}
+            label="스킬"
             size="small"
             sx={{
-              background: 'rgba(20,85,245,0.1)',
-              border: '1px solid rgba(20,85,245,0.3)',
-              color: '#4D8FFF',
+              background: 'var(--chip-bg)',
+              border: '1px solid var(--chip-border)',
+              color: 'var(--color-primary-light)',
               fontWeight: 600,
             }}
           />
@@ -55,70 +64,56 @@ export default function SkillTree() {
           sx={{
             fontSize: { xs: '2rem', md: '2.8rem' },
             fontWeight: 700,
-            color: '#FFFFFF',
+            color: 'var(--color-text-primary)',
             mb: 1,
             letterSpacing: '-0.02em',
           }}
         >
           기술 스택
         </Typography>
-        <Typography variant="body1" sx={{ color: '#5A6480', mb: 6 }}>
-          프로젝트를 통해 직접 사용하며 익힌 기술들입니다.
+        <Typography variant="body1" sx={{ color: 'var(--color-text-muted)', mb: 6 }}>
+          가장 자신있는 기술 4가지입니다. 전체 스킬은 About Me에서 확인하세요.
         </Typography>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {skills.map((skill) => (
-            <Box
-              key={skill.name}
-              sx={{
-                background: 'rgba(10,14,36,0.6)',
-                border: '1px solid #1A2040',
-                borderRadius: 2,
-                p: '16px 24px',
-                transition: 'border-color 0.2s',
-                '&:hover': { borderColor: categoryColors[skill.category] },
-              }}
-            >
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
-                  <Typography sx={{ color: '#FFFFFF', fontWeight: 600, fontSize: '0.95rem' }}>
-                    {skill.name}
-                  </Typography>
-                  <Chip
-                    label={skill.category}
-                    size="small"
-                    sx={{
-                      height: 20,
-                      fontSize: '0.7rem',
-                      background: `${categoryColors[skill.category]}20`,
-                      color: categoryColors[skill.category],
-                      border: `1px solid ${categoryColors[skill.category]}40`,
-                    }}
-                  />
-                  <Typography sx={{ color: '#5A6480', fontSize: '0.78rem', display: { xs: 'none', sm: 'block' } }}>
-                    {skill.desc}
-                  </Typography>
+        <Grid container spacing={2} sx={{ mb: 5 }}>
+          {skills.map((skill) => {
+            const color = categoryColors[skill.category] ?? '#4D8FFF';
+            return (
+              <Grid size={{ xs: 6, sm: 3 }} key={skill.id}>
+                <Box
+                  sx={{
+                    background: 'var(--surface-card)',
+                    border: '1px solid var(--color-border)',
+                    borderRadius: 2,
+                    p: 3,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    transition: 'border-color 0.2s',
+                    '&:hover': { borderColor: color },
+                  }}
+                >
+                  <CircularSkillGauge value={skill.level} label={skill.name} color={color} size={84} />
                 </Box>
-                <Typography sx={{ color: '#5A6480', fontSize: '0.85rem', fontWeight: 600, flexShrink: 0, ml: 2 }}>
-                  {skill.level}%
-                </Typography>
-              </Box>
-              <LinearProgress
-                variant="determinate"
-                value={skill.level}
-                sx={{
-                  height: 5,
-                  borderRadius: 3,
-                  background: '#1A2040',
-                  '& .MuiLinearProgress-bar': {
-                    background: `linear-gradient(90deg, ${categoryColors[skill.category]}, ${categoryColors[skill.category]}99)`,
-                    borderRadius: 3,
-                  },
-                }}
-              />
-            </Box>
-          ))}
-        </Box>
+              </Grid>
+            );
+          })}
+        </Grid>
+
+        <Button
+          variant="outlined"
+          endIcon={<ArrowForwardIcon />}
+          onClick={() => navigate('/about')}
+          sx={{
+            borderColor: 'var(--color-border)',
+            color: 'var(--color-text-secondary)',
+            px: 3,
+            py: 1.2,
+            fontWeight: 600,
+            '&:hover': { borderColor: 'var(--color-primary-light)', color: 'var(--color-text-primary)' },
+          }}
+        >
+          전체 스킬 보기
+        </Button>
       </Box>
     </Box>
   );

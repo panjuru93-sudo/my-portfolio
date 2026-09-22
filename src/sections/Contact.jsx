@@ -3,21 +3,23 @@ import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import SendIcon from '@mui/icons-material/Send';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { GITHUB_URL, EMAIL_ADDRESS, EMAIL_URL } from '../constants/socialLinks';
+import RevealBackground from '../components/common/RevealBackground';
 
 const contactLinks = [
   {
     icon: <GitHubIcon />,
     label: 'GitHub',
-    sub: 'github.com/panjuru93-sudo',
-    url: 'https://github.com/panjuru93-sudo',
-    accent: '#FFFFFF',
+    sub: GITHUB_URL.replace('https://', ''),
+    url: GITHUB_URL,
+    accent: 'var(--color-text-primary)',
   },
   {
     icon: <MailOutlinedIcon />,
     label: 'Email',
-    sub: 'panjuru93@gmail.com',
-    url: 'mailto:panjuru93@gmail.com',
-    accent: '#4D8FFF',
+    sub: EMAIL_ADDRESS,
+    url: EMAIL_URL,
+    accent: 'var(--color-primary-light)',
   },
 ];
 
@@ -27,26 +29,29 @@ export default function Contact() {
       component="section"
       id="contact-section"
       sx={{
+        position: 'relative',
+        overflow: 'hidden',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#000000',
         py: 12,
         px: 3,
       }}
     >
-      <Box sx={{ maxWidth: 900, width: '100%' }}>
+      <RevealBackground background="var(--color-bg-primary)" />
+
+      <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, width: '100%' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 4 }}>
-          <Box sx={{ width: 32, height: 2, background: '#1455F5', borderRadius: 1 }} />
+          <Box sx={{ width: 32, height: 2, background: 'var(--color-primary)', borderRadius: 1 }} />
           <Chip
-            icon={<MailOutlinedIcon sx={{ fontSize: 16, color: '#4D8FFF !important' }} />}
-            label="Contact"
+            icon={<MailOutlinedIcon sx={{ fontSize: 16, color: 'var(--color-primary-light) !important' }} />}
+            label="연락처"
             size="small"
             sx={{
-              background: 'rgba(20,85,245,0.1)',
-              border: '1px solid rgba(20,85,245,0.3)',
-              color: '#4D8FFF',
+              background: 'var(--chip-bg)',
+              border: '1px solid var(--chip-border)',
+              color: 'var(--color-primary-light)',
               fontWeight: 600,
             }}
           />
@@ -54,19 +59,19 @@ export default function Contact() {
 
         <Typography
           variant="h2"
-          sx={{ fontSize: { xs: '2rem', md: '2.8rem' }, fontWeight: 700, color: '#FFFFFF', mb: 1, letterSpacing: '-0.02em' }}
+          sx={{ fontSize: { xs: '2rem', md: '2.8rem' }, fontWeight: 700, color: 'var(--color-text-primary)', mb: 1, letterSpacing: '-0.02em' }}
         >
           함께 이야기해요 ✉️
         </Typography>
-        <Typography variant="body1" sx={{ color: '#5A6480', mb: 6 }}>
+        <Typography variant="body1" sx={{ color: 'var(--color-text-muted)', mb: 6 }}>
           프로젝트 협업, 피드백, 어떤 연락이든 환영합니다.
         </Typography>
 
         <Grid container spacing={4}>
           {/* 연락처 링크 */}
           <Grid item xs={12} md={5}>
-            <Typography sx={{ color: '#B0BDD8', fontWeight: 600, mb: 2, fontSize: '0.9rem', letterSpacing: '0.06em' }}>
-              CONTACT
+            <Typography sx={{ color: 'var(--color-text-secondary)', fontWeight: 600, mb: 2, fontSize: '0.9rem', letterSpacing: '0.06em' }}>
+              연락처
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {contactLinks.map((item) => (
@@ -77,23 +82,23 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
-                    background: 'rgba(10,14,36,0.6)',
-                    border: '1px solid #1A2040',
+                    background: 'var(--surface-card)',
+                    border: '1px solid var(--color-border)',
                     borderRadius: 2,
                     cursor: 'pointer',
                     transition: 'all 0.2s',
                     textDecoration: 'none',
                     display: 'block',
-                    '&:hover': { borderColor: item.accent, background: 'rgba(20,85,245,0.05)' },
+                    '&:hover': { borderColor: item.accent, background: 'var(--chip-bg-soft)' },
                   }}
                 >
                   <CardContent sx={{ p: '14px 20px !important', display: 'flex', alignItems: 'center', gap: 2 }}>
                     <Box sx={{ color: item.accent }}>{item.icon}</Box>
                     <Box sx={{ flex: 1 }}>
-                      <Typography sx={{ color: '#FFFFFF', fontWeight: 600, fontSize: '0.9rem' }}>{item.label}</Typography>
-                      <Typography sx={{ color: '#5A6480', fontSize: '0.8rem' }}>{item.sub}</Typography>
+                      <Typography sx={{ color: 'var(--color-text-primary)', fontWeight: 600, fontSize: '0.9rem' }}>{item.label}</Typography>
+                      <Typography sx={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>{item.sub}</Typography>
                     </Box>
-                    <OpenInNewIcon sx={{ color: '#2A3150', fontSize: 16 }} />
+                    <OpenInNewIcon sx={{ color: 'var(--color-placeholder)', fontSize: 16 }} />
                   </CardContent>
                 </Card>
               ))}
@@ -104,12 +109,12 @@ export default function Contact() {
               sx={{
                 mt: 3,
                 p: 3,
-                background: 'rgba(20,85,245,0.05)',
-                border: '1px solid rgba(20,85,245,0.2)',
+                background: 'var(--chip-bg-soft)',
+                border: '1px solid var(--chip-border-soft)',
                 borderRadius: 2,
               }}
             >
-              <Typography sx={{ color: '#4D8FFF', fontWeight: 700, fontSize: '0.85rem', mb: 0.5 }}>
+              <Typography sx={{ color: 'var(--color-primary-light)', fontWeight: 700, fontSize: '0.85rem', mb: 0.5 }}>
                 🚀 배포된 프로젝트
               </Typography>
               <Typography
@@ -118,10 +123,10 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
-                  color: '#5A6480',
+                  color: 'var(--color-text-muted)',
                   fontSize: '0.78rem',
                   textDecoration: 'none',
-                  '&:hover': { color: '#4D8FFF' },
+                  '&:hover': { color: 'var(--color-primary-light)' },
                 }}
               >
                 panjuru93-sudo.github.io/pingiping
@@ -131,13 +136,13 @@ export default function Contact() {
 
           {/* 메시지 폼 */}
           <Grid item xs={12} md={7}>
-            <Typography sx={{ color: '#B0BDD8', fontWeight: 600, mb: 2, fontSize: '0.9rem', letterSpacing: '0.06em' }}>
-              SEND MESSAGE
+            <Typography sx={{ color: 'var(--color-text-secondary)', fontWeight: 600, mb: 2, fontSize: '0.9rem', letterSpacing: '0.06em' }}>
+              메시지 작성
             </Typography>
             <Card
               sx={{
-                background: 'rgba(10,14,36,0.6)',
-                border: '1px solid #1A2040',
+                background: 'var(--surface-card)',
+                border: '1px solid var(--color-border)',
                 borderRadius: 3,
               }}
             >
@@ -150,13 +155,13 @@ export default function Contact() {
                     size="small"
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        color: '#FFFFFF',
-                        background: 'rgba(26,32,64,0.5)',
-                        '& fieldset': { borderColor: '#1A2040' },
-                        '&:hover fieldset': { borderColor: '#4D8FFF' },
-                        '&.Mui-focused fieldset': { borderColor: '#1455F5' },
+                        color: 'var(--color-text-primary)',
+                        background: 'var(--surface-panel-strong)',
+                        '& fieldset': { borderColor: 'var(--color-border)' },
+                        '&:hover fieldset': { borderColor: 'var(--color-primary-light)' },
+                        '&.Mui-focused fieldset': { borderColor: 'var(--color-primary)' },
                       },
-                      '& input::placeholder': { color: '#5A6480' },
+                      '& input::placeholder': { color: 'var(--color-text-muted)' },
                     }}
                   />
                   <TextField
@@ -166,13 +171,13 @@ export default function Contact() {
                     size="small"
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        color: '#FFFFFF',
-                        background: 'rgba(26,32,64,0.5)',
-                        '& fieldset': { borderColor: '#1A2040' },
-                        '&:hover fieldset': { borderColor: '#4D8FFF' },
-                        '&.Mui-focused fieldset': { borderColor: '#1455F5' },
+                        color: 'var(--color-text-primary)',
+                        background: 'var(--surface-panel-strong)',
+                        '& fieldset': { borderColor: 'var(--color-border)' },
+                        '&:hover fieldset': { borderColor: 'var(--color-primary-light)' },
+                        '&.Mui-focused fieldset': { borderColor: 'var(--color-primary)' },
                       },
-                      '& input::placeholder': { color: '#5A6480' },
+                      '& input::placeholder': { color: 'var(--color-text-muted)' },
                     }}
                   />
                   <TextField
@@ -183,25 +188,25 @@ export default function Contact() {
                     rows={4}
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        color: '#FFFFFF',
-                        background: 'rgba(26,32,64,0.5)',
-                        '& fieldset': { borderColor: '#1A2040' },
-                        '&:hover fieldset': { borderColor: '#4D8FFF' },
-                        '&.Mui-focused fieldset': { borderColor: '#1455F5' },
+                        color: 'var(--color-text-primary)',
+                        background: 'var(--surface-panel-strong)',
+                        '& fieldset': { borderColor: 'var(--color-border)' },
+                        '&:hover fieldset': { borderColor: 'var(--color-primary-light)' },
+                        '&.Mui-focused fieldset': { borderColor: 'var(--color-primary)' },
                       },
-                      '& textarea::placeholder': { color: '#5A6480' },
+                      '& textarea::placeholder': { color: 'var(--color-text-muted)' },
                     }}
                   />
                   <Button
                     variant="contained"
                     endIcon={<SendIcon />}
                     fullWidth
-                    onClick={() => window.open('mailto:panjuru93@gmail.com', '_blank')}
+                    onClick={() => window.open(EMAIL_URL, '_blank')}
                     sx={{
-                      background: 'linear-gradient(135deg, #1455F5, #4D8FFF)',
+                      background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-light))',
                       py: 1.3,
                       fontWeight: 600,
-                      '&:hover': { background: 'linear-gradient(135deg, #4D8FFF, #5599FF)' },
+                      '&:hover': { background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-accent))' },
                     }}
                   >
                     메시지 보내기
