@@ -16,7 +16,7 @@ const initialAboutMeData = {
       id: 'dev-story',
       title: '나의 개발 스토리',
       icon: 'code',
-      content: '수업 덕분에 개발을 시작하게 되었는데, 시스템적으로 어떻게 만들어지는지 알게 되니까 굉장히 신기하고 재미있습니다.',
+      content: '수업 덕분에 개발을 시작하게 되었는데, 시스템적으로 어떻게 만들어지는지 알게 되니까 굉장히 신기하고 재미있었습니다.',
       showInHome: true,
     },
     {
