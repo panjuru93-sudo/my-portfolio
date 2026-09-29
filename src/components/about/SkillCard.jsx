@@ -7,6 +7,7 @@ import { categoryColors } from '../../theme/skillCategories';
 import { skillIconMap } from '../../theme/skillIcons';
 import { useInView } from '../../hooks/useInView';
 import { useCountUp } from '../../hooks/useCountUp';
+import { GLASS_BLUR } from '../../theme/theme';
 
 /**
  * SkillCard 컴포넌트 — 개별 스킬 하나를 아이콘·숙련도 바·툴팁과 함께 보여주고 편집한다.
@@ -20,7 +21,7 @@ import { useCountUp } from '../../hooks/useCountUp';
  * <SkillCard skill={skill} onLevelChange={updateSkillLevel} onToggleMain={toggleSkillMain} />
  */
 function SkillCard({ skill, onLevelChange, onToggleMain }) {
-  const color = categoryColors[skill.category] ?? '#4D8FFF';
+  const color = categoryColors[skill.category] ?? '#CFCFCF';
   const Icon = skillIconMap[skill.icon] ?? CodeIcon;
 
   // 카드가 뷰포트에 들어오면 프로그레스 바 채움 + 숫자 카운팅을 동시에 시작
@@ -34,6 +35,8 @@ function SkillCard({ skill, onLevelChange, onToggleMain }) {
       aria-label={`${skill.name} 스킬, 숙련도 ${skill.level}%`}
       sx={{
         background: 'var(--surface-card)',
+        backdropFilter: GLASS_BLUR,
+        WebkitBackdropFilter: GLASS_BLUR,
         border: '1px solid var(--color-border)',
         borderRadius: 2,
         p: 2.5,

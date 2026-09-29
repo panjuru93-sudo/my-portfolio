@@ -1,129 +1,65 @@
-/* Dark Tech Theme — CSS Variables (컬러 팔레트 디자인 시스템.md 기반) */
-/* 다크(기본값)와 라이트 두 세트를 :root[data-theme] 로 전환한다. */
-:root,
-:root[data-theme='dark'] {
-  /* Primary Colors */
-  --color-primary: #1455F5;
-  --color-primary-light: #4D8FFF;
-  --color-primary-dark: #0A35C0;
+/* Paper & Red Theme — 종이 질감 배경 + 레드 포인트 (Hero 커버 페이지 레퍼런스 기반), 라이트 고정 */
+:root {
+  /* Primary Colors — 브랜드 레드 */
+  --color-primary: #E6432E;
+  --color-primary-light: #F06A55;
+  --color-primary-dark: #B83322;
 
   /* Secondary Colors */
-  --color-secondary: #D6E8FF;
-  --color-accent: #5599FF;
+  --color-secondary: #1A1A1A;
+  --color-accent: #8C2A1C;
 
   /* Background Colors */
-  --color-bg-primary: #000000;
-  --color-bg-secondary: #03040D;
-  --color-bg-card: #0A0E24;
-
-  /* Text Colors */
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #B0BDD8;
-  --color-text-muted: #5A6480;
-
-  /* Interactive Colors */
-  --color-button-primary: #1455F5;
-  --color-button-hover: #4D8FFF;
-  --color-link: #4D8FFF;
-  --color-link-hover: #D6E8FF;
-
-  /* Border & Divider */
-  --color-border: #1A2040;
-  --color-divider: #0D1228;
-
-  /* 반투명 표면 (카드/패널 겹침 단계) */
-  --surface-card: rgba(10,14,36,0.6);
-  --surface-card-strong: rgba(10,14,36,0.7);
-  --surface-card-stronger: rgba(10,14,36,0.8);
-  --surface-card-solid: rgba(10,14,36,0.9);
-  --surface-panel-soft: rgba(26,32,64,0.3);
-  --surface-panel: rgba(26,32,64,0.4);
-  --surface-panel-strong: rgba(26,32,64,0.5);
-
-  /* 브랜드 블루 틴트 칩/배지 */
-  --chip-bg-soft: rgba(20,85,245,0.05);
-  --chip-bg-hover: rgba(20,85,245,0.08);
-  --chip-bg: rgba(20,85,245,0.1);
-  --chip-bg-strong: rgba(20,85,245,0.12);
-  --chip-bg-stronger: rgba(20,85,245,0.15);
-  --chip-border-soft: rgba(20,85,245,0.2);
-  --chip-border: rgba(20,85,245,0.3);
-  --chip-border-strong: rgba(20,85,245,0.4);
-
-  --accent-border-soft: rgba(77,143,255,0.2);
-  --accent-border: rgba(77,143,255,0.4);
-
-  --muted-chip-bg: rgba(90,100,128,0.15);
-  --muted-chip-bg-strong: rgba(90,100,128,0.25);
-
-  --grid-line: rgba(20,85,245,0.06);
-  --appbar-bg: rgba(0,0,0,0.85);
-  --decorative-text: rgba(77,143,255,0.35);
-
-  /* 빈 값/플레이스홀더 텍스트 */
-  --color-placeholder: #2A3150;
-}
-
-:root[data-theme='light'] {
-  /* Primary Colors — 브랜드 블루는 유지하되, 텍스트로 쓰이는 밝은 톤은 대비 확보를 위해 어둡게 */
-  --color-primary: #1455F5;
-  --color-primary-light: #0A35C0;
-  --color-primary-dark: #072a9e;
-
-  /* Secondary Colors */
-  --color-secondary: #1455F5;
-  --color-accent: #0A35C0;
-
-  /* Background Colors */
-  --color-bg-primary: #FFFFFF;
-  --color-bg-secondary: #F4F6FB;
+  --color-bg-primary: #F6F1E8;
+  --color-bg-secondary: #EFE7D8;
   --color-bg-card: #FFFFFF;
 
   /* Text Colors */
-  --color-text-primary: #0A0E24;
-  --color-text-secondary: #45506E;
-  --color-text-muted: #6B7690;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #4A4642;
+  --color-text-muted: #7A756D;
 
   /* Interactive Colors */
-  --color-button-primary: #1455F5;
-  --color-button-hover: #0A35C0;
-  --color-link: #1455F5;
-  --color-link-hover: #0A35C0;
+  --color-button-primary: #E6432E;
+  --color-button-hover: #C93524;
+  --color-link: #E6432E;
+  --color-link-hover: #C93524;
 
   /* Border & Divider */
-  --color-border: #E1E6F0;
-  --color-divider: #EDF0F7;
+  --color-border: rgba(26,26,26,0.14);
+  --color-divider: rgba(26,26,26,0.08);
 
-  /* 반투명 표면 */
-  --surface-card: rgba(255,255,255,0.75);
-  --surface-card-strong: rgba(255,255,255,0.85);
-  --surface-card-stronger: rgba(255,255,255,0.92);
+  /* 반투명 표면 (카드/패널 겹침 단계) — 종이 위 화이트 글래스 */
+  --surface-card: rgba(255,255,255,0.55);
+  --surface-card-strong: rgba(255,255,255,0.7);
+  --surface-card-stronger: rgba(255,255,255,0.85);
   --surface-card-solid: rgba(255,255,255,0.97);
-  --surface-panel-soft: rgba(20,30,60,0.03);
-  --surface-panel: rgba(20,30,60,0.04);
-  --surface-panel-strong: rgba(20,30,60,0.05);
+  --surface-panel-soft: rgba(26,26,26,0.03);
+  --surface-panel: rgba(26,26,26,0.04);
+  --surface-panel-strong: rgba(26,26,26,0.05);
 
-  --chip-bg-soft: rgba(20,85,245,0.04);
-  --chip-bg-hover: rgba(20,85,245,0.06);
-  --chip-bg: rgba(20,85,245,0.08);
-  --chip-bg-strong: rgba(20,85,245,0.1);
-  --chip-bg-stronger: rgba(20,85,245,0.12);
-  --chip-border-soft: rgba(20,85,245,0.15);
-  --chip-border: rgba(20,85,245,0.25);
-  --chip-border-strong: rgba(20,85,245,0.35);
+  /* 레드 틴트 칩/배지 */
+  --chip-bg-soft: rgba(230,67,46,0.06);
+  --chip-bg-hover: rgba(230,67,46,0.1);
+  --chip-bg: rgba(230,67,46,0.12);
+  --chip-bg-strong: rgba(230,67,46,0.16);
+  --chip-bg-stronger: rgba(230,67,46,0.22);
+  --chip-border-soft: rgba(230,67,46,0.25);
+  --chip-border: rgba(230,67,46,0.35);
+  --chip-border-strong: rgba(230,67,46,0.5);
 
-  --accent-border-soft: rgba(20,85,245,0.15);
-  --accent-border: rgba(20,85,245,0.3);
+  --accent-border-soft: rgba(26,26,26,0.15);
+  --accent-border: rgba(230,67,46,0.4);
 
-  --muted-chip-bg: rgba(100,110,140,0.08);
-  --muted-chip-bg-strong: rgba(100,110,140,0.14);
+  --muted-chip-bg: rgba(26,26,26,0.06);
+  --muted-chip-bg-strong: rgba(26,26,26,0.1);
 
-  --grid-line: rgba(20,85,245,0.05);
-  --appbar-bg: rgba(255,255,255,0.85);
-  --decorative-text: rgba(10,53,192,0.3);
+  --grid-line: rgba(26,26,26,0.06);
+  --appbar-bg: rgba(246,241,232,0.85);
+  --decorative-text: rgba(26,26,26,0.18);
 
   /* 빈 값/플레이스홀더 텍스트 */
-  --color-placeholder: #C5CBDA;
+  --color-placeholder: #C9BFA8;
 }
 
 *, *::before, *::after {
@@ -141,16 +77,6 @@ body {
   color: var(--color-text-primary);
   font-family: 'Inter', 'Pretendard', 'Noto Sans KR', sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-/* 테마 전환 시 부드러운 색상 애니메이션 (자체 transition을 지정하지 않은 요소 기준 베이스라인) */
-body,
-#root,
-header,
-nav,
-section,
-main {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 #root {

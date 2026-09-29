@@ -204,6 +204,7 @@ export default function Contact() {
                     onClick={() => window.open(EMAIL_URL, '_blank')}
                     sx={{
                       background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-light))',
+                      color: 'var(--color-bg-primary)',
                       py: 1.3,
                       fontWeight: 600,
                       '&:hover': { background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-accent))' },

@@ -2,6 +2,7 @@ import { Box, Typography, Chip, Button, Grid } from '@mui/material';
 import WorkOutlinedIcon from '@mui/icons-material/WorkOutlined';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { projects } from '../constants/projects';
+import { GLASS_BLUR } from '../theme/theme';
 
 function ProjectCard({ project }) {
   return (
@@ -12,6 +13,8 @@ function ProjectCard({ project }) {
           flexDirection: 'column',
           height: '100%',
           background: 'var(--surface-card-strong)',
+          backdropFilter: GLASS_BLUR,
+          WebkitBackdropFilter: GLASS_BLUR,
           border: '1px solid var(--color-border)',
           borderRadius: 3,
           overflow: 'hidden',

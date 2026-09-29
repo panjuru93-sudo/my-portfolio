@@ -77,7 +77,7 @@ export default function SkillTree() {
 
         <Grid container spacing={2} sx={{ mb: 5 }}>
           {skills.map((skill) => {
-            const color = categoryColors[skill.category] ?? '#4D8FFF';
+            const color = categoryColors[skill.category] ?? '#CFCFCF';
             return (
               <Grid size={{ xs: 6, sm: 3 }} key={skill.id}>
                 <Box

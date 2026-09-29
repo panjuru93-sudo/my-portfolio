@@ -98,7 +98,7 @@ export default function CustomCursor() {
             width: 6,
             height: 6,
             borderRadius: '50%',
-            background: '#4D8FFF',
+            background: 'var(--color-primary)',
             opacity: (1 - i / TRAIL_LENGTH) * 0.5,
             mixBlendMode: 'difference',
             pointerEvents: 'none',

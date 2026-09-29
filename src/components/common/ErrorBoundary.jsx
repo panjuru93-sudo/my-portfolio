@@ -60,6 +60,7 @@ class ErrorBoundary extends Component {
             sx={{
               mt: 1,
               background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-light))',
+              color: 'var(--color-bg-primary)',
               '&:hover': { background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-accent))' },
             }}
           >

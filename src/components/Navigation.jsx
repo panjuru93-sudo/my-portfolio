@@ -5,7 +5,6 @@ import {
   Drawer, List, ListItem, ListItemButton, ListItemText,
   Box, useMediaQuery, useTheme,
 } from '@mui/material';
-import ThemeToggle from './common/ThemeToggle';
 
 const navItems = [
   { label: '홈', id: 'hero-section' },
@@ -215,8 +214,6 @@ export default function Navigation() {
                 ))}
               </Box>
             )}
-
-            <ThemeToggle />
 
             {isMobile && (
               <Box

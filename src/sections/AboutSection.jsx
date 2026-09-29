@@ -8,6 +8,7 @@ import WorkOutlinedIcon from '@mui/icons-material/WorkOutlined';
 import { usePortfolio } from '../hooks/usePortfolio';
 import { categoryColors, categoryIcons } from '../theme/skillCategories';
 import RevealBackground from '../components/common/RevealBackground';
+import { GLASS_BLUR } from '../theme/theme';
 
 export default function AboutSection() {
   const navigate = useNavigate();
@@ -88,6 +89,8 @@ export default function AboutSection() {
               <Box
                 sx={{
                   background: 'var(--surface-card-stronger)',
+                  backdropFilter: GLASS_BLUR,
+                  WebkitBackdropFilter: GLASS_BLUR,
                   border: '1px solid var(--color-border)',
                   borderRadius: 3,
                   p: { xs: 3, md: 4 },
@@ -116,6 +119,8 @@ export default function AboutSection() {
             <Box
               sx={{
                 background: 'var(--surface-card-stronger)',
+                backdropFilter: GLASS_BLUR,
+                WebkitBackdropFilter: GLASS_BLUR,
                 border: '1px solid var(--color-border)',
                 borderRadius: 3,
                 p: 3,
@@ -160,13 +165,15 @@ export default function AboutSection() {
           </Typography>
           <Grid container spacing={2}>
             {skills.map((skill) => {
-              const color = categoryColors[skill.category] ?? '#4D8FFF';
+              const color = categoryColors[skill.category] ?? '#CFCFCF';
               const Icon = categoryIcons[skill.category] ?? PersonOutlinedIcon;
               return (
                 <Grid size={{ xs: 6, sm: 3 }} key={skill.id}>
                   <Box
                     sx={{
                       background: 'var(--surface-card)',
+                      backdropFilter: GLASS_BLUR,
+                      WebkitBackdropFilter: GLASS_BLUR,
                       border: '1px solid var(--color-border)',
                       borderRadius: 2,
                       p: 2,
@@ -195,6 +202,7 @@ export default function AboutSection() {
           onClick={() => navigate('/about')}
           sx={{
             background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-light))',
+            color: 'var(--color-bg-primary)',
             px: 3,
             py: 1.2,
             fontWeight: 600,

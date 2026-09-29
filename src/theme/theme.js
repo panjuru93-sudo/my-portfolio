@@ -1,45 +1,44 @@
 import { createTheme } from '@mui/material/styles';
 
-// Dark Tech Theme — Sui 기반 컬러 팔레트 디자인 시스템
-// 브랜드 블루(primary)는 라이트/다크 공통, 배경·텍스트만 모드별로 갈라진다.
-const PRIMARY = '#1455F5';
-const PRIMARY_LIGHT = '#4D8FFF';
-const PRIMARY_DARK = '#0A35C0';
-const ACCENT = '#5599FF';
+// Paper & Red Theme — 종이 질감 배경 + 브랜드 레드 포인트 (라이트 고정)
+const PRIMARY = '#E6432E';
+const PRIMARY_LIGHT = '#F06A55';
+const PRIMARY_DARK = '#B83322';
+const ACCENT = '#8C2A1C';
+
+// 리퀴드 글래스(프로스티드 글래스) 카드 전반에서 재사용하는 블러 값
+export const GLASS_BLUR = 'blur(20px) saturate(180%)';
 
 /**
- * createAppTheme — 라이트/다크 모드에 맞는 MUI 테마를 생성한다.
+ * createAppTheme — Paper & Red 라이트 테마의 MUI 테마를 생성한다.
  * palette 값은 MUI 내부 색상 연산(alpha 등)에 쓰이므로 실제 hex를 사용하고,
  * components.styleOverrides 쪽은 CSS 변수(var(--...))를 참조해 index.css의 팔레트와 동기화한다.
  *
- * @param {'light'|'dark'} mode
  * @returns {import('@mui/material/styles').Theme}
  */
-export function createAppTheme(mode = 'dark') {
-  const isDark = mode === 'dark';
-
+export function createAppTheme() {
   return createTheme({
     palette: {
-      mode,
+      mode: 'light',
       primary: { main: PRIMARY, light: PRIMARY_LIGHT, dark: PRIMARY_DARK },
-      secondary: { main: isDark ? '#D6E8FF' : PRIMARY },
+      secondary: { main: '#1A1A1A' },
       background: {
-        default: isDark ? '#000000' : '#FFFFFF',
-        paper: isDark ? '#0A0E24' : '#FFFFFF',
+        default: '#F6F1E8',
+        paper: '#FFFFFF',
       },
       text: {
-        primary: isDark ? '#FFFFFF' : '#0A0E24',
-        secondary: isDark ? '#B0BDD8' : '#45506E',
-        disabled: isDark ? '#5A6480' : '#6B7690',
+        primary: '#1A1A1A',
+        secondary: '#4A4642',
+        disabled: '#7A756D',
       },
-      divider: isDark ? '#1A2040' : '#E1E6F0',
+      divider: 'rgba(26,26,26,0.14)',
     },
     typography: {
       fontFamily: '"Inter", "Pretendard", "Noto Sans KR", sans-serif',
-      h1: { fontWeight: 700, letterSpacing: '-0.02em' },
-      h2: { fontWeight: 700, letterSpacing: '-0.01em' },
-      h3: { fontWeight: 600 },
-      h4: { fontWeight: 600 },
+      h1: { fontWeight: 800, letterSpacing: '-0.03em' },
+      h2: { fontWeight: 800, letterSpacing: '-0.02em' },
+      h3: { fontWeight: 700 },
+      h4: { fontWeight: 700 },
       body1: { lineHeight: 1.75 },
       body2: { lineHeight: 1.6 },
     },
@@ -57,8 +56,9 @@ export function createAppTheme(mode = 'dark') {
           },
           containedPrimary: {
             background: `linear-gradient(135deg, ${PRIMARY}, ${PRIMARY_LIGHT})`,
+            color: '#FFFFFF',
             '&:hover': {
-              background: `linear-gradient(135deg, ${PRIMARY_LIGHT}, ${ACCENT})`,
+              background: `linear-gradient(135deg, ${PRIMARY_DARK}, ${ACCENT})`,
             },
           },
         },
@@ -66,9 +66,12 @@ export function createAppTheme(mode = 'dark') {
       MuiCard: {
         styleOverrides: {
           root: {
-            background: 'var(--color-bg-card)',
+            background: 'var(--surface-card-strong)',
             border: '1px solid var(--color-border)',
-            backdropFilter: 'blur(10px)',
+            borderRadius: 16,
+            backdropFilter: GLASS_BLUR,
+            WebkitBackdropFilter: GLASS_BLUR,
+            boxShadow: '0 8px 32px rgba(26,26,26,0.1)',
           },
         },
       },
@@ -76,7 +79,8 @@ export function createAppTheme(mode = 'dark') {
         styleOverrides: {
           root: {
             background: 'var(--appbar-bg)',
-            backdropFilter: 'blur(20px)',
+            backdropFilter: GLASS_BLUR,
+            WebkitBackdropFilter: GLASS_BLUR,
             borderBottom: '1px solid var(--color-border)',
             boxShadow: 'none',
           },

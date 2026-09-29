@@ -183,6 +183,7 @@ function AddSkillForm({ onAdd, existingNames = [] }) {
           variant="contained"
           sx={{
             background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-light))',
+            color: 'var(--color-bg-primary)',
             '&:hover': { background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-accent))' },
           }}
         >
